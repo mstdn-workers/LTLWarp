@@ -1,0 +1,25 @@
+{
+  "name": "ltlwarp",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "electron": "^1.8.2",
+    "electron-packager": "^11.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mstdn-workers/LTLWarp.git"
+  },
+  "author": "called-d <called.0xd@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mstdn-workers/LTLWarp/issues"
+  },
+  "homepage": "https://github.com/mstdn-workers/LTLWarp#readme"
+}
