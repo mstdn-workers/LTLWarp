@@ -2,7 +2,7 @@
   "name": "ltlwarp",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "dependencies": {},
   "devDependencies": {
     "concurrently": "^3.5.1",
@@ -10,6 +10,7 @@
     "electron-packager": "^11.0.1"
   },
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
