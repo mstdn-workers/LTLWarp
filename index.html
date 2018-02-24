@@ -5,9 +5,38 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <form>
+      <input type="datetime-local" id="datetimepicker" name="ltl_datetime" />
+      <button type="button" id="get_ltl_button">LTL取得</button>
+    </form>
+    <div id="ltl_area"></div>
+    <script>
+      const mastodon = require("./mastodon")
+      const moment = require("moment")
+      const Long = require("long")
+      moment.locale("ja")
+      let datetimepicker = document.getElementById("datetimepicker")
+      datetimepicker.value = moment().format("YYYY-MM-DDTHH:mm")
+      let get_ltl_button = document.getElementById("get_ltl_button")
+      let ltl_area = document.getElementById("ltl_area")
+      function getMaxIdFromDatetime(datetimestr) {
+        return (new Long(moment(datetimestr).unix(), 0, true)).mul(1000).shl(16).toString()
+      }
+      function getStatusElement(status) {
+        let status_element = document.createElement("article")
+        status_element.innerHTML = status.content
+        return status_element
+      }
+      function writeLTL() {
+        ltl_area.innerHTML = ""
+        mastodon.get('timelines/public', {
+          local: true,
+          max_id: getMaxIdFromDatetime(datetimepicker.value)
+      }).then(
+          resp => resp.data.forEach(status => ltl_area.appendChild(getStatusElement(status)))
+        )
+      }
+      get_ltl_button.addEventListener("click", writeLTL, false)
+    </script>
   </body>
 </html>
